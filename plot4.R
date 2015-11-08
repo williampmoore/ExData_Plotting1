@@ -21,11 +21,19 @@ splitData <- within(splitData, { timestamp=strptime(paste(Date, Time), format = 
 
 png("./plot4.png")
 par(mfrow=c(2,2))
-plot(y = splitData$Global_Active_Power, x = splitData$timestamp, type = "l", ylab = "Global Active Power (kilowatts)", xlab = "", main = "")
-plot(y = splitData$Voltage, x = splitData$timestamp, type = "l", ylab = "Volatege", xlab = "DateTime", main = "")
-plot(y = splitData$Sub_metering_1, x = splitData$timestamp, type = "l", ylab = "Energy Sub Metering", main = "")
-lines(y = splitData$Sub_metering_2, type = "l", col = "red")
-lines(y = splitData$Sub_metering_3, type = "l", col = "blue")
-legend("topright", c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lty = c(1, 1), lwd = c(2.5, 2.5), col = c("black", "red", "blue"))
-plot(y = splitData$Global_reactive_power, x = splitData$timestamp, type = "l", ylab = "Global_reactive_power", xlab = "", main = "")
+plot(y = splitData$Global_active_power, x = splitData$timestamp,
+     type = "l", ylab = "Global Active Power", xlab = "", main = "")
+
+plot(y = splitData$Voltage, x = splitData$timestamp, type = "l",
+     ylab = "Volatege", xlab = "datetime", main = "")
+
+plot(y = splitData$Sub_metering_1, x = splitData$timestamp, type = "l",
+     ylab = "Energy Sub Metering", xlab = "", main = "")
+lines(y = splitData$Sub_metering_2, x = splitData$timestamp, type = "l", col = "red")
+lines(y = splitData$Sub_metering_3, x = splitData$timestamp, type = "l", col = "blue")
+legend("topright", c("Sub_metering_1", "Sub_metering_2","Sub_metering_3"),
+       lty = c(1, 1), lwd = c(2.5, 2.5), col = c("black", "red", "blue"))
+
+plot(y = splitData$Global_reactive_power, x = splitData$timestamp, type = "l",
+     ylab = "Global_reactive_power", xlab = "datetime", main = "")
 dev.off()
